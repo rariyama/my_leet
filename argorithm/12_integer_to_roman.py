@@ -14,11 +14,11 @@ class Solution:
         if num < 4:
             return self.symbol['1'] * num
         elif num == 4:
-            return 'IV'        
+            return self.symbol['1'] + self.symbol['5']
         elif num >= 5 and num < 9:
-            return 'V' + self.symbol['1'] * (num-5)
+            return self.symbol['5'] + self.symbol['1'] * (num-5)
         elif num == 9:
-            return 'IX' 
+            return self.symbol['1'] + self.symbol['10']
     
     def second_digits(self, num) -> str:
         numbers = [int(i) for i in str(num)]
@@ -28,11 +28,11 @@ class Solution:
         if first_num < 4:
             ans += self.symbol['10'] * first_num
         elif first_num == 4:
-            ans += 'XL'
+            ans += self.symbol['10'] + self.symbol['50']
         elif first_num >= 5 and first_num < 9:
-            ans += 'L' + self.symbol['10'] * (first_num-5)
+            ans += self.symbol['50'] + self.symbol['10'] * (first_num-5)
         elif first_num == 9:
-            ans += 'XC'
+            ans += self.symbol['10'] + self.symbol['100']
         if second_num == 0:
             return ans
         else:
@@ -48,11 +48,11 @@ class Solution:
         if first_num < 4:
             ans += self.symbol['100'] * first_num
         elif first_num == 4:
-            ans += 'CD'
+            ans += self.symbol['100'] + self.symbol['500']
         elif first_num >= 5 and first_num < 9:
-            ans += 'D' + self.symbol['100'] * (first_num-5)
+            ans += self.symbol['500'] + self.symbol['100'] * (first_num-5)
         elif first_num == 9:
-            ans += 'CM'
+            ans += self.symbol['100'] + self.symbol['1000']
         if second_num == 0 and third_num == 0:
             return ans
         elif second_num == 0 and third_num != 0:
@@ -100,32 +100,61 @@ class Solution:
             return self.fourth_digits(num)
 
 def main():
-    input = [3, 4, 5, 6, 9]
-    collects = ['III', 'IV', 'V', 'VI', 'IX']
-    for i, v in enumerate(input):
-        res = Solution().intToRoman(v)
-        assert res == collects[i]
+    test_data = {'3': 'III',
+                 '4': 'IV',
+                 '5': 'V',
+                 '6': 'VI',
+                 '9': 'IX'
+                 }
+    for v in test_data:
+        res = Solution().intToRoman(int(v))
+        assert res == test_data[v]
     print('first digit is succeeded!')
 
-    input = [32, 45, 58, 66, 91, 10, 20, 50, 60, 90]
-    collects = ['XXXII', 'XLV', 'LVIII', 'LXVI', 'XCI', 'X', 'XX', 'L', 'LX', 'XC']
-    for i, v in enumerate(input):
-        res = Solution().intToRoman(v)
-        assert res == collects[i]
+    test_data = {'32': 'XXXII',
+                 '45': 'XLV',
+                 '58': 'LVIII',
+                 '66': 'LXVI',
+                 '91': 'XCI',
+                 '10': 'X',
+                 '20': 'XX',
+                 '50': 'L',
+                 '60': 'LX',
+                 '90': 'XC'}
+    for v in test_data:
+        res = Solution().intToRoman(int(v))
+        assert res == test_data[v]
     print('second digit is succeeded!')
 
-    input = [246, 438, 597, 616, 975, 100, 101, 110, 200, 400, 500, 900]
-    collects = ['CCXLVI', 'CDXXXVIII', 'DXCVII', 'DCXVI', 'CMLXXV', 'C', 'CI', 'CX', 'CC', 'CD', 'D', 'CM']
-    for i, v in enumerate(input):
-        res = Solution().intToRoman(v)
-        assert res == collects[i]
+    test_data = {'246': 'CCXLVI',
+                 '438': 'CDXXXVIII',
+                 '597': 'DXCVII',
+                 '616': 'DCXVI',
+                 '975': 'CMLXXV',
+                 '100': 'C',
+                 '101': 'CI',
+                 '110': 'CX',
+                 '200': 'CC',
+                 '400': 'CD',
+                 '500': 'D',
+                 '900': 'CM'
+                 }
+    for v in test_data:
+        res = Solution().intToRoman(int(v))
+        assert res == test_data[v]
     print('third digit is succeeded!')
 
-    input = [1991, 2754, 3819, 1000, 1001, 1010, 1101]
-    collects = ['MCMXCI', 'MMDCCLIV', 'MMMDCCCXIX', 'M', 'MI', 'MX', 'MCI']
-    for i, v in enumerate(input):
-        res = Solution().intToRoman(v)
-        assert res == collects[i]
+    test_data = {'1991': 'MCMXCI',
+                 '2754': 'MMDCCLIV',
+                 '3819': 'MMMDCCCXIX',
+                 '1000': 'M',
+                 '1001': 'MI',
+                 '1010': 'MX',
+                 '1101': 'MCI'
+                 }
+    for v in test_data:
+        res = Solution().intToRoman(int(v))
+        assert res == test_data[v]
     print('fourth digit is succeeded!')
 
 
